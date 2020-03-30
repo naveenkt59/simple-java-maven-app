@@ -21,7 +21,6 @@ pipeline {
                 }
             }
         }
-         stages {
         stage('Code Analysis') {
             steps {
                 sh 'sudo sonar-scanner -Dsonar.host.url=http://10.174.0.183:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
