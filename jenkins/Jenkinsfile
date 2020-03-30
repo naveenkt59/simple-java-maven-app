@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Code Analysis') {
             steps {
-                sh ' sonar-scanner -Dsonar.host.url=http://10.174.0.183:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
+                sh ' /home/vagrant/sonar-runner/sonar-scanner-4.2.0.1873-linux/bin//sonar-scanner -Dsonar.host.url=http://10.174.0.183:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
             }
         }
         stage('Deliver') {
