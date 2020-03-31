@@ -39,7 +39,7 @@ pipeline {
                         protocol: 'http',
                         nexusUrl: 'http://10.174.0.183:8081/nexus',
                         groupId: 'java-grp',
-                        **version: "${pom.version}",**
+                        version: "${pom.version}",
                         repository: 'java-repo',
                         credentialsId: 'nexus_cred',
                         artifacts: [
