@@ -44,7 +44,7 @@ pipeline {
                         credentialsId: 'nexus_cred',
                         artifacts: [
                             [artifactId: 'java_jar',
-                            file: 'target/my-app-1.0.jar',
+                            file: 'target/my-app-1.0-SNAPSHOT.jar',
                             type: 'jar']
                         ]
                 )
