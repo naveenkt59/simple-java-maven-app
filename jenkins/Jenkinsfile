@@ -28,5 +28,28 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+        stage('Nexus') {
+        steps {
+            script {
+                def pom = readMavenPom file: 'pom.xml'
+                echo pom.version
+
+                nexusArtifactUploader(
+                        nexusVersion: 'nexus2',
+                        protocol: 'http',
+                        nexusUrl: 'http://10.174.0.183:8081/nexus',
+                        groupId: 'java-grp',
+                        **version: "${pom.version}",**
+                        repository: 'java-repo',
+                        credentialsId: 'nexus_cred',
+                        artifacts: [
+                            [artifactId: 'java_jar',
+                            file: 'target/my-app-1.0-SNAPSHOT.jar',
+                            type: 'jar']
+                        ]
+                )
+            }
+        }
+    }
     }
 }
