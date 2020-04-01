@@ -53,7 +53,7 @@ pipeline {
     }
     stage('Deploy') {
             steps {
-                dir(jenkins/infra/src/terraform) {
+                dir("jenkins/infra/src/terraform/") {
                 sh 'make plan'
                 sh 'make apply'
             }
