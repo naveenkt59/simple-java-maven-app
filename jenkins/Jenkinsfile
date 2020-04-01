@@ -53,10 +53,6 @@ pipeline {
     }
     stage('Deploy') {
             steps {
-                script {
-                def tfHome = tool name: ‘terraform’
-                env.PATH = “${tfHome}:${env.PATH}”
-                }
                 dir("jenkins/infra/src/terraform/") {
                 sh 'make plan'
                 sh 'make apply'

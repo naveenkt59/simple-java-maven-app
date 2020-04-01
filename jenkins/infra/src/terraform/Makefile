@@ -21,24 +21,24 @@ first-run:
 
 init:
 	@echo "initialize remote state file"
-	terraform init --force-copy -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)" -backend-config="region=$(STATEREGION)"
+	/var/vagrant/terraform/terraform init --force-copy -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)" -backend-config="region=$(STATEREGION)"
 
 validate: init
 	@echo "running terraform validate
-	terraform validate -no-color 
+	/var/vagrant/terraform/terraform validate -no-color 
 
 plan: validate
 	@echo "running terraform plan"
-	terraform plan -no-color 
+	/var/vagrant/terraform/terraform plan -no-color 
 
 apply: plan
 	@echo "running terraform apply"
-	terraform apply -auto-approve -no-color
+	/var/vagrant/terraform/terraform apply -auto-approve -no-color
 
 plan-destroy: validate
 	@echo "running terraform plan -destroy"
-	terraform plan -destroy -no-color  
+	/var/vagrant/terraform/terraform plan -destroy -no-color  
 
 destroy: init
 	@echo "running terraform destroy"
-	terraform destroy -force -no-color
+	/var/vagrant/terraform/terraform destroy -force -no-color
