@@ -71,8 +71,8 @@ pipeline {
              sh 'export AWS_REGION="eu-central-1"'
             
             dir("jenkins/infra/src/terraform/") {
-                sh 'make plan'
-                sh 'make apply'
+                sh 'sudo make plan'
+                sh 'sudo make apply'
             }
 }
             }
