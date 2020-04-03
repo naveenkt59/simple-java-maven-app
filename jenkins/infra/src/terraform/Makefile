@@ -24,7 +24,7 @@ init:
 	terraform init --force-copy -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)" -backend-config="region=$(STATEREGION)"
 
 validate: init
-	@echo "running terraform validate
+	@echo "running terraform validate"
 	terraform validate -no-color 
 
 plan: validate
