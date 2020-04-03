@@ -1,9 +1,8 @@
 provider "aws" {
-  assume_role {
-    role_arn     = "arn:aws:iam::883089186918:role/devops_jenkins"
-    session_name = "terraform"
-    region = "eu-central-1"
+    assume_role {
+    role_arn     = "arn:aws:iam::883089186918:role/ec2_role"
   }
+    region = "eu-central-1"
 }
 
 terraform {
