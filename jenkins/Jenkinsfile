@@ -66,18 +66,15 @@ pipeline {
                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_devops', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
              sh 'echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY'
              sh 'echo $AWS_SECRET_ACCESS_KEY'
-             sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
-             sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
-            
 }
             }
             }
     stage('Deploy') {
             steps {
                 dir("jenkins/infra/src/terraform/") {
-                sh 'make plan'
-                sh 'make apply'
+                sh 'AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY make plan'
+                sh 'AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY make apply'
             }
             }
         }
