@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "ingress" {
 }
 
 resource "aws_security_group_rule" "example" {
-  type              = "ingress"
+  type              = "egress"
   from_port         = 0
   to_port           = 65535
   protocol          = "-1"
