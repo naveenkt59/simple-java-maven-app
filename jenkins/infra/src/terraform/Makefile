@@ -16,29 +16,29 @@ STATEREGION = eu-central-1
 first-run:
 	@echo "initialize remote state file"
 	@echo $(WORKSPACE) $(JOB_NAME)
-	terraform init -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)"  -backend-config="region=$(STATEREGION)"
+	sudo terraform init -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)"  -backend-config="region=$(STATEREGION)"
 
 
 init:
 	@echo "initialize remote state file"
-	terraform init --force-copy -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)" -backend-config="region=$(STATEREGION)"
+	sudo terraform init --force-copy -backend-config="bucket=$(STATEBUCKET)" -backend-config="key=$(STATEKEY)" -backend-config="region=$(STATEREGION)"
 
 validate: init
 	@echo "running terraform validate
-	terraform validate -no-color 
+	sudo terraform validate -no-color 
 
 plan: validate
 	@echo "running terraform plan"
-	terraform plan -no-color 
+	sudo terraform plan -no-color 
 
 apply: plan
 	@echo "running terraform apply"
-	terraform apply -auto-approve -no-color
+	sudo terraform apply -auto-approve -no-color
 
 plan-destroy: validate
 	@echo "running terraform plan -destroy"
-	terraform plan -destroy -no-color  
+	sudo terraform plan -destroy -no-color  
 
 destroy: init
 	@echo "running terraform destroy"
-	terraform destroy -force -no-color
+	sudo terraform destroy -force -no-color
