@@ -4,7 +4,7 @@ def secret_key
 
 
 pipeline {
-    agent any
+    agent {label 'OPA-TCS'}
     stages {
         stage('Build') {
             steps {
@@ -24,7 +24,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 script {
-                sh 'sudo /home/vagrant/sonar-runner/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dsonar.host.url=http://10.174.0.183:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
+                sh 'sudo /home/vagrant/sonar-runner/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
                 }
             }
         }
@@ -42,7 +42,7 @@ pipeline {
                 nexusArtifactUploader(
                         nexusVersion: 'nexus2',
                         protocol: 'http',
-                        nexusUrl: '192.168.0.1:8081/nexus',
+                        nexusUrl: 'localhost:8081/nexus',
                         groupId: 'java-grp',
                         version: "${BUILD_NUMBER}",
                         repository: 'java-repo',
@@ -78,5 +78,21 @@ pipeline {
 }
             }
             }
+
+     stage('Testing'){
+         steps{
+            checkout([
+			$class: 'GitSCM', branches: [[name: '*/master']],
+			extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'selenium_scripts']],
+			userRemoteConfigs: [[url: 'https://github.com/naveenkt59/google.git',
+			credentialsId:'']]
+			 ])   
+            dir("selenium_scripts/") {
+                sh 'mvn clean test -P chrome'
+            }
+         }                
+
+
+     }
     }
 }
