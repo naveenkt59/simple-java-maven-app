@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh '../../../maven/apache-maven-3.6.3/bin/mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Unit Test') {
             steps {
-                sh '../../../maven/apache-maven-3.6.3/bin/mvn test'
+                sh 'mvn test'
             }
             post {
                 always {
@@ -88,7 +88,7 @@ pipeline {
 			credentialsId:'']]
 			 ])   
             dir("selenium_scripts/") {
-                sh '../../../../maven/apache-maven-3.6.3/bin/mvn clean test -P chrome'
+                sh 'mvn clean test -P chrome'
             }
          }                
 
