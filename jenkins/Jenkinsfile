@@ -5,6 +5,11 @@ def secret_key
 
 pipeline {
     agent {label 'OPA-TCS'}
+      environment {
+     M2_HOME = '/home/ec2-user/maven/apache-maven-3.6.3/'
+     PATH = '$M2_HOME/bin:$PATH'
+     
+    }
     stages {
         stage('Build') {
             steps {
