@@ -29,7 +29,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 script {
-                sh 'sonar-runner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
+                sh 'sonar-runner -Dsonar.host.url=http://10.0.0.65:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
                 nexusArtifactUploader(
                         nexusVersion: 'nexus2',
                         protocol: 'http',
-                        nexusUrl: 'localhost:8081/nexus',
+                        nexusUrl: '10.0.0.65:8081/nexus',
                         groupId: 'java-grp',
                         version: "${BUILD_NUMBER}",
                         repository: 'java-repo',
