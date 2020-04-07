@@ -29,7 +29,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 script {
-                sh 'sudo /home/vagrant/sonar-runner/sonar-scanner-4.2.0.1873-linux/bin/sonar-scanner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
+                sh 'sudo /home/vagrant/sonar-runner/sonar-scanner-4.2.0.1873-linux/bin/sonar-runner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
                 }
             }
         }
