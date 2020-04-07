@@ -29,7 +29,7 @@ pipeline {
         stage('Code Analysis') {
             steps {
                 script {
-                sh 'sudo sonar-runner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
+                sh 'sonar-runner -Dsonar.host.url=http://localhost:9000 -Dsonar.projectKey=web_app -Dsonar.java.binaries=target/classes'
                 }
             }
         }
