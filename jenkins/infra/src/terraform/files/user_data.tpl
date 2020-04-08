@@ -16,3 +16,8 @@ sudo chmod +x /opt/data/apache-tomcat-8.5.35/bin/startup.sh /opt/data/apache-tom
 sudo ln -s /opt/data/apache-tomcat-8.5.35/bin/startup.sh /usr/local/bin/tomcatup
 sudo ln -s /opt/data/apache-tomcat-8.5.35/bin/shutdown.sh /usr/local/bin/tomcatdown
 tomcatup
+if wget http://localhost:8080/companyNews  2>&1 | grep --quiet "200 OK" ; then
+echo "server is up and Running"
+else
+aws ses send-email --from naveenk59@outlook.com --to naveen.kmr@sonata-software.com --subject app_deploy_status --text Hi --region eu-central-1
+fi
