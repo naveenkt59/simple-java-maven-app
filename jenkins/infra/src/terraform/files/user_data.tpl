@@ -19,5 +19,5 @@ tomcatup
 if wget http://localhost:8080/companyNews  | grep --quiet "200 OK" ; then
 echo "server is up and Running"
 else
-aws ses send-email --from naveenk59@outlook.com --to naveen.kmr@sonata-software.com --subject app_deploy_status --text Hi --region eu-central-1
+aws ses send-email --from naveenk59@outlook.com --to naveen.kmr@sonata-software.com --subject app_deploy_status --text "App Deployed" --region eu-central-1
 fi
