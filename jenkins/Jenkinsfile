@@ -7,7 +7,7 @@ pipeline {
     agent {label 'OPA-TCS'}
       environment {
      M2_HOME = '/home/ec2-user/maven/apache-maven-3.6.3/'
-      PATH = "${env.M2_HOME}/bin:/home/ec2-user/sonar-runner/sonar-runner-2.4/bin:${env.PATH}"
+      PATH = "${env.M2_HOME}/bin:/home/ec2-user/sonar-runner/sonar-runner-2.4/bin:/home/ec2-user/terraform/terraform:${env.PATH}"
      
     }
     stages {
