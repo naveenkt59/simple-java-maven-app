@@ -5,6 +5,12 @@ resource "aws_iam_role" "ec2_apijobs_instance_role" {
   assume_role_policy = file("assumerolepolicy.json")
 }
 
+
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role       = "${aws_iam_role.ec2_apijobs_instance_role.name}"
+  policy_arn = "arn:aws:iam::883089186918:policy/test_policy"
+}
+
 resource "aws_iam_instance_profile" "ec2_apijobs_instance_profile" {
   name  = "DEV_ec2_apijobs_instance_profile"
   role = "${aws_iam_role.ec2_apijobs_instance_role.name}"
