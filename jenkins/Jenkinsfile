@@ -72,20 +72,19 @@ pipeline {
          }                
      }
       stage('Deploy') {
-          
-            environment {
+	   environment {
                 AWS_ACCESS_KEY_ID = "$AWS_ACCESS_KEY_ID"
                 AWS_SECRET_ACCESS_KEY = "$AWS_SECRET_ACCESS_KEY"
             }
-            steps {
-               withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_devops', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+			
+             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_devops', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
              sh 'echo $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY'
              sh 'echo $AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
              sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
-			 sh 'aws s3 cp target/my-app-1.0-SNAPSHOT.jar s3://java-bucket-devops/'
 }
+            steps {
             dir("jenkins/infra/src/terraform/") {
                 sh 'make destroy'
                 sh 'make plan'
