@@ -53,13 +53,14 @@ pipeline {
              sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
 }
-            }
+           
 
             withAWS(region:'eu-central-1',credentials:'') {
 
                 // Upload files from working directory 'dist' in your project workspace
                 s3Upload(file:'file.txt', bucket:'java-bucket-devops', path:'target/my-app-1.0-SNAPSHOT.jar')
             }
+		 }
     }
 
     
