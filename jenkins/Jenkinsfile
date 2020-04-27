@@ -56,9 +56,7 @@ pipeline {
            
 
             withAWS(region:'eu-central-1',credentials:'') {
-
-                // Upload files from working directory 'dist' in your project workspace
-                s3Upload(file: 'my-app-1.0-SNAPSHOT.jar4, bucket: 'java-bucket-devops', path: 'target/*')      
+                s3Upload(file: 'my-app-1.0-SNAPSHOT.jar4', bucket: 'java-bucket-devops', path: 'target/*')      
             }
 		 }
     }
