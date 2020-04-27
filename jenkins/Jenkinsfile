@@ -52,7 +52,10 @@ pipeline {
              sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
 }
-                s3Upload(file: "my-app-1.0-SNAPSHOT.jar4", bucket: "java-bucket-devops", path: "target/*")
+		
+			withAWS(region: "${AWS_REGION}") {
+              s3Upload(file: "my-app-1.0-SNAPSHOT.jar4", bucket: "java-bucket-devops", path: "target/", acl: 'BucketOwnerFullControl')
+            }
 		 }
     }
 
