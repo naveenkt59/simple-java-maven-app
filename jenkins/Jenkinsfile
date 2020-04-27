@@ -51,7 +51,7 @@ pipeline {
              sh 'export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID'
              sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
-			 sh 'aws s3 cp target/my-app-1.0-SNAPSHOT.jar s3://xyz/'
+			 sh 'aws s3 cp target/my-app-1.0-SNAPSHOT.jar s3://java-bucket-devops/'
 }
 
 		 }
