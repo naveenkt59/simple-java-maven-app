@@ -52,9 +52,8 @@ pipeline {
              sh 'export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY'
              sh 'export AWS_REGION="eu-central-1"'
 }
-           
             withAWS(region:'eu-central-1',credentials:'') {
-                s3Upload(file: "my-app-1.0-SNAPSHOT.jar4", bucket: "java-bucket-devops", path: "target/*")      
+                s3Upload(file: "my-app-1.0-SNAPSHOT.jar4", bucket: "java-bucket-devops", path: "target/*").    
             }
 		 }
     }
